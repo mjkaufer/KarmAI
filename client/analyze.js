@@ -4,14 +4,14 @@ dayNumToName = function(n) { //converts the number of the day of the week to its
     return ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"][n]
 }
 
-getPosts = function(subreddit, n, posts, callback) { //returns the top n*100 posts of subreddit
+getPosts = function(subreddit, n, period, posts, callback) { //returns the top n*100 posts of subreddit
 
     var count = n;
 
     var search = reddit
         .top(subreddit)
         .limit(100)
-        .t('month');
+        .t(period);
 
     if (posts.length > 0) //if there's already data in our post list, we start our search after the last piece of data
         search = search.after(posts.slice(-1)[0].data.name)

@@ -10,3 +10,15 @@ button{
 	content: "#" counter(c) ": ";
 	counter-increment: c;
 }
+
+div#header, div#footer{
+	text-align: center;
+}
+
+select{
+	cursor:pointer;
+}
+
+select:focus{
+	cursor:auto;
+}
