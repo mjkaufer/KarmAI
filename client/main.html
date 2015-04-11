@@ -3,12 +3,16 @@
 </head>
 
 <body>
-	<h1>KarmAI</h1>
+	<div class="container">
+		<h1>KarmAI</h1>
 
-	{{> controls}}
+		{{> controls}}
+	</div>
 </body>
 
 <template name="controls">
-	<input type="text" placeholder="Subreddit">
-	<button id="ai">Find Optimal Time To Post</button>
+	<div class="row">
+		<input id="subreddit" type="text" placeholder="Subreddit" class="form-control">
+		<button id="ai" class="btn-block btn-lg btn-primary">Find Optimal Time To Post</button>
+	</div>
 </template>
