@@ -11,7 +11,11 @@ button{
 	counter-increment: c;
 }
 
-div#header, div#footer{
+div#header{
+	text-align: center;
+}
+
+div#footer{
 	text-align: center;
 }
 

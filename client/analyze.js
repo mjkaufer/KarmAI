@@ -13,8 +13,14 @@ getPosts = function(subreddit, n, period, posts, callback) { //returns the top n
         .limit(100)
         .t(period);
 
-    if (posts.length > 0) //if there's already data in our post list, we start our search after the last piece of data
+    if (posts.length > 0){ //if there's already data in our post list, we start our search after the last piece of data
+    	console.log("*---")
+    	console.log(posts)
+    	console.log(posts.slice(-1));
+    	console.log(posts.slice(-1)[0]);
         search = search.after(posts.slice(-1)[0].data.name)
+        console.log("~---")
+	}
 
     search.fetch(function(res) {
 
@@ -26,7 +32,7 @@ getPosts = function(subreddit, n, period, posts, callback) { //returns the top n
             return callback(posts);
         }
 
-        getPosts(subreddit, count, posts, function(posts) {
+        getPosts(subreddit, count, period, posts, function(posts) {
             callback(posts);
         })
 

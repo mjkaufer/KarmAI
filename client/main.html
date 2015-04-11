@@ -60,20 +60,25 @@
 </template>
 
 <template name="footer">
-	<small id="footer">By <a href="http://github.com/mjkaufer">@mjkaufer</a></small>
+	<div id="footer">
+		<small>By <a href="http://github.com/mjkaufer">@mjkaufer</a></small>
+		<br>
+		<iframe src="https://ghbtns.com/github-btn.html?user=mjkaufer&repo=KarmAI&type=star&count=true" frameborder="0" scrolling="0" width="75px" height="20px"></iframe>
+	</div>
 </template>
 
 <template name="results">
 	{{#if hasData}}
-		<h5>Results for /r/{{subreddit}}</h5>
+		<h3>Results for <b>/r/{{subreddit}}</b></h3>
 
 		<div class="results">
 		{{#each data.times}}
-			<p id="time">{{format this}}</p>
+			<h4 id="time">{{stats this.freq}} of top posts made on {{format this}}</h4>
+			<p>Examples:</p>
 			<ul>
-				{{#each examples}}
+				{{#each trim examples}}
 					<li>
-						<a href="{{this.url}}">{{this.title}}</a>
+						<a target="_blank" href="http://reddit.com{{this.url}}">{{this.title}}</a>
 					</li>
 				{{/each}}
 			</ul>
