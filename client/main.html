@@ -12,7 +12,11 @@
 
 <template name="controls">
 	<div class="row">
-		<input id="subreddit" type="text" placeholder="Subreddit" class="form-control">
+		<div class="input-group">
+			<span class="input-group-addon">/r/</span>
+			<input id="subreddit" type="text" placeholder="Subreddit" class="form-control" />
+		</div>
+		<br>
 		<button id="ai" class="btn-block btn-lg btn-primary">Find Optimal Time To Post</button>
 	</div>
 </template>
