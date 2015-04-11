@@ -1,3 +1,12 @@
 button{
 	border:none; /*fixes weird button border*/
 }
+
+.results{
+	counter-reset: c;
+}
+
+.results #time:before {
+	content: "#" counter(c) ": ";
+	counter-increment: c;
+}

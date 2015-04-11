@@ -58,7 +58,12 @@ parseData = function(posts){
 			localDay: day
 		},{
 			$inc: {freq: 1},//todo, get rid of updating and give each post its own thing, so we can sort by more stuff - also means we have to find a way to do frequency mapping
-			$push: {examples: post.url}
+			$push: {examples: 
+				{
+					url: post.permalink,
+					title: post.title
+				}
+			}
 		})
 
 	} else {//new entry
@@ -67,7 +72,10 @@ parseData = function(posts){
 			localHour: hours,
 			localDay: day,
 			freq: 1,
-			examples: [post.url]
+			examples: [{
+				url: post.permalink,
+				title: post.title
+			}]
 		});
 
 	}

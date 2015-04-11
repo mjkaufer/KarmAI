@@ -33,8 +33,23 @@
 
 <template name="results">
 	{{#if hasData}}
-		<p>Data found</p>
+		<h5>Results for /r/{{subreddit}}</h5>
+
+		<div class="results">
+		{{#each data.times}}
+			<p id="time">{{format this}}</p>
+			<ul>
+				{{#each examples}}
+					<li>
+						<a href="{{this.url}}">{{this.title}}</a>
+					</li>
+				{{/each}}
+			</ul>
+		{{/each}}
+		</div>
+
 		{{> graph}}
+
 	{{/if}}
 </template>
 
