@@ -5,8 +5,12 @@
 <body>
 	<div class="container">
 		<h1>KarmAI</h1>
-
+		<b>Determine what the best time to post in a subreddit is, based off of the monthly top posts in the subreddit!</b>
+		<br>
+		<br>
 		{{> controls}}
+		<br>
+		{{> footer}}
 	</div>
 </body>
 
@@ -19,4 +23,8 @@
 		<br>
 		<button id="ai" class="btn-block btn-lg btn-primary">Find Optimal Time To Post</button>
 	</div>
+</template>
+
+<template name="footer">
+	<small>By <a href="http://github.com/mjkaufer">@mjkaufer</a></small>
 </template>
