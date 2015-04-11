@@ -10,6 +10,8 @@
 		<br>
 		{{> controls}}
 		<br>
+		{{> results}}
+		<br>
 		{{> footer}}
 	</div>
 </body>
@@ -27,4 +29,15 @@
 
 <template name="footer">
 	<small>By <a href="http://github.com/mjkaufer">@mjkaufer</a></small>
+</template>
+
+<template name="results">
+	{{#if hasData}}
+		<p>Data found</p>
+		{{> graph}}
+	{{/if}}
+</template>
+
+<template name="graph">
+
 </template>
