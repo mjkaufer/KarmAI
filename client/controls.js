@@ -2,8 +2,8 @@
 TempStats = new Meteor.Collection(null); //temporary, non-persistent collection
 
 Session.set("best", null);
-Session.set("subreddit", null);
-Session.set("count", null);
+Session.set("subreddit", "askReddit");
+Session.set("count", 100);
 
 var top = 5; //amount of top datasets to show
 
@@ -30,9 +30,6 @@ Template.controls.events({
         Session.set("count", parseInt($('#amount').val()));
         Session.set("best", null);
         Session.set("subreddit", subreddit);
-
-        console.log(subreddit, time, amount);
-
 
         getPosts(subreddit, amount, time, [], function(posts) {
             // console.log("Posts");
