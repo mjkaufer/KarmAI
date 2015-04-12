@@ -5,7 +5,8 @@ dayNumToName = function(n) { //converts the number of the day of the week to its
 }
 
 getPosts = function(subreddit, n, period, posts, callback) { //returns the top n*100 posts of subreddit
-
+    subreddit = subreddit || "askReddit";
+    Session.set("subreddit", subreddit)
     var count = n;
 
     var search = reddit
@@ -41,6 +42,12 @@ getPosts = function(subreddit, n, period, posts, callback) { //returns the top n
 }
 
 parseData = function(posts) {
+    
+    while(TempStats.find().count() > 0){//the really f'd up way we need to clear the database, because TempStats.remove({}) doesn't work
+        TempStats.remove(TempStats.findOne()._id);
+    }
+
+
     for (var i = 0; i < posts.length; i++) {
         var post = posts[i].data;
 

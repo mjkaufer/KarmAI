@@ -9,8 +9,17 @@ Template.results.helpers({
     },
     format: function(data) {
         var hour = data.localHour;
+
+        var fhour;
+
+        if(hour % 12 == 0)
+            fhour = 12;
+        else
+            fhour = hour % 12;
+
         var day = data.localDay;
-        return day + " at " + (hour % 12) + " " + (hour < 12 ? "AM" : "PM");
+
+        return day + " at " + fhour + " " + (hour < 12 ? "AM" : "PM");
     },
     subreddit: function() {
         return Session.get("subreddit");

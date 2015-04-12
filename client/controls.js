@@ -35,17 +35,16 @@ Template.controls.events({
 
 
         getPosts(subreddit, amount, time, [], function(posts) {
-            console.log("Posts");
-            console.log(posts)
+            // console.log("Posts");
+            // console.log(posts)
             parseData(posts)
 
-            console.log("All done!")
-            console.log(TempStats.find({}, {
-                sort: {
-                    freq: -1
-                }
-            }).fetch());
-            window.TempStats = TempStats
+            // console.log("All done!")
+            // console.log(TempStats.find({}, {
+            //     sort: {
+            //         freq: -1
+            //     }
+            // }).fetch());
 
             Session.set("best", {
                 subreddit: subreddit,
