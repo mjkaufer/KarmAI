@@ -26,6 +26,9 @@ Template.controls.events({
     'keyup #subreddit': function(e) {
         if (e.which == 13)
             info();
+    },
+    'submit #form': function(e){
+        e.preventDefault();
     }
 });
 
