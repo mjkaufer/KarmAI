@@ -13,9 +13,9 @@ getPosts = function(subreddit, n, period, posts, callback) { //returns the top n
         .limit(100)
         .t(period);
 
-    if (posts.length > 0){ //if there's already data in our post list, we start our search after the last piece of data
+    if (posts.length > 0) { //if there's already data in our post list, we start our search after the last piece of data
         search = search.after(posts.slice(-1)[0].data.name)
-	}
+    }
 
     search.fetch(function(res) {
 
@@ -36,8 +36,8 @@ getPosts = function(subreddit, n, period, posts, callback) { //returns the top n
 }
 
 parseData = function(posts) {
-    
-    while(TempStats.find().count() > 0){//the really f'd up way we need to clear the database, because TempStats.remove({}) doesn't work
+
+    while (TempStats.find().count() > 0) { //the really f'd up way we need to clear the database, because TempStats.remove({}) doesn't work
         TempStats.remove(TempStats.findOne()._id);
     }
 

@@ -23,7 +23,7 @@ Template.controls.events({
         //run diagnostics
 
         var subreddit = $('#subreddit').val() || "askReddit";
-        $('#subreddit').val(subreddit);//if the user didn't set a value, fills the input with the default val
+        $('#subreddit').val(subreddit); //if the user didn't set a value, fills the input with the default val
         var time = $('#time').val();
         var amount = parseInt($('#amount').val()) / 100;
 
