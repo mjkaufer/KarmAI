@@ -54,6 +54,15 @@
 				</select>
 			</div>
 
+			<div class="form-group">
+				<label for="time">Index Results By:</label>
+				<select class="form-control" id="grouping">
+					<option value="true">Time of Day & Weekday</option>
+					<option value="false">Time of Day</option>
+				</select>
+			</div>
+
+
 			<br>
 		</form>
 		<button id="ai" class="btn-block btn-lg btn-primary">Find Optimal Time To Post</button>
@@ -76,7 +85,7 @@
 
 			<div class="results">
 			{{#each data.times}}
-				<h4 id="time">{{stats this.freq}} of top posts made on {{format this}}</h4>
+				<h4 id="time">{{stats this.freq}} of top posts made {{format this}}</h4>
 				<p>Examples:</p>
 				<ul>
 					{{#each trim examples}}

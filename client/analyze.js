@@ -41,6 +41,8 @@ parseData = function(posts) {
         TempStats.remove(TempStats.findOne()._id);
     }
 
+    var dayAndTime = Session.get("dayAndTime");
+
     for (var i = 0; i < posts.length; i++) {
         var post = posts[i].data;
 
@@ -54,39 +56,47 @@ parseData = function(posts) {
         var hours = date.getHours();
         var day = dayNumToName(date.getDay());
 
-        if (TempStats.findOne({
-            localHour: hours,
-            localDay: day
-        })) { //if there is already some entry on the same day
+        if (TempStats.findOne(query(hours, day, dayAndTime))) { //if there is already some entry on the same day
 
-            TempStats.update({
-                localHour: hours,
-                localDay: day
-            }, {
-                $inc: {
-                    freq: 1
-                }, //todo, get rid of updating and give each post its own thing, so we can sort by more stuff - also means we have to find a way to do frequency mapping
-                $push: {
-                    examples: {
-                        url: post.permalink,
-                        title: post.title
+            TempStats.update(
+                query(hours, day, dayAndTime), {
+                    $inc: {
+                        freq: 1
+                    }, //todo, get rid of updating and give each post its own thing, so we can sort by more stuff - also means we have to find a way to do frequency mapping
+                    $push: {
+                        examples: {
+                            url: post.permalink,
+                            title: post.title
+                        }
                     }
                 }
-            })
+            )
 
         } else { //new entry
 
-            TempStats.insert({
-                localHour: hours,
-                localDay: day,
-                freq: 1,
-                examples: [{
-                    url: post.permalink,
-                    title: post.title
-                }]
-            });
+            var insert = query(hours, day, dayAndTime);
+
+            insert.freq = 1;
+            insert.examples = [{
+                url: post.permalink,
+                title: post.title
+            }];
+
+            TempStats.insert(insert);
 
         }
 
     }
+}
+
+function query(hours, day, dayAndTime) {
+    if (dayAndTime)
+        return {
+            localHour: hours,
+            localDay: day
+        };
+
+    return {
+        localHour: hours
+    };
 }

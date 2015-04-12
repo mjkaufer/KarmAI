@@ -4,6 +4,7 @@ TempStats = new Meteor.Collection(null); //temporary, non-persistent collection
 Session.set("best", null);
 Session.set("subreddit", "askReddit");
 Session.set("count", 100);
+Session.set("dayAndTime", true);
 
 var top = 5; //amount of top datasets to show
 
@@ -27,7 +28,7 @@ Template.controls.events({
         if (e.which == 13)
             info();
     },
-    'submit #form': function(e){
+    'submit #form': function(e) {
         e.preventDefault();
     }
 });
@@ -37,6 +38,8 @@ function info() {
     $('#subreddit').val(subreddit); //if the user didn't set a value, fills the input with the default val
     var time = $('#time').val();
     var amount = parseInt($('#amount').val()) / 100;
+    var dayAndTime = $('#grouping').val() == "true";
+    Session.set("dayAndTime", dayAndTime);
 
     Session.set("count", parseInt($('#amount').val()));
     Session.set("best", null);

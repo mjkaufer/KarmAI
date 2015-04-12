@@ -8,6 +8,8 @@ Template.results.helpers({
         return Session.get("best"); //display a max of 4 posts
     },
     format: function(data) {
+        console.log(data)
+
         var hour = data.localHour;
 
         var fhour;
@@ -17,9 +19,14 @@ Template.results.helpers({
         else
             fhour = hour % 12;
 
-        var day = data.localDay;
+        var timeString = " at " + fhour + " " + (hour < 12 ? "AM" : "PM");
 
-        return day + " at " + fhour + " " + (hour < 12 ? "AM" : "PM");
+        if(!data.localDay)
+            return timeString;
+
+        var day = data.localDay;
+        
+        return "on " + day + timeString;
     },
     subreddit: function() {
         return Session.get("subreddit");
