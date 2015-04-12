@@ -29,5 +29,17 @@ Template.results.helpers({
     },
     trim: function(data) {
         return data.slice(0, 4);
+    },
+    scroll: function(){//scrolls to the template
+        var i = setInterval(function(){
+            if($('#results')){
+                $('html, body').animate({
+                    scrollTop: $("#results").offset().top
+                }, 250);
+                clearInterval(i);
+            }
+                
+        }, 50)
+        
     }
 });

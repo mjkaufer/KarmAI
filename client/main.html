@@ -69,24 +69,26 @@
 
 <template name="results">
 	{{#if hasData}}
-		<h3>Results for <b>/r/{{subreddit}}</b></h3>
+		<div id="results">
+			<h3>Results for <b>/r/{{subreddit}}</b></h3>
 
-		<div class="results">
-		{{#each data.times}}
-			<h4 id="time">{{stats this.freq}} of top posts made on {{format this}}</h4>
-			<p>Examples:</p>
-			<ul>
-				{{#each trim examples}}
-					<li>
-						<a target="_blank" href="http://reddit.com{{this.url}}">{{this.title}}</a>
-					</li>
-				{{/each}}
-			</ul>
-		{{/each}}
+			<div class="results">
+			{{#each data.times}}
+				<h4 id="time">{{stats this.freq}} of top posts made on {{format this}}</h4>
+				<p>Examples:</p>
+				<ul>
+					{{#each trim examples}}
+						<li>
+							<a target="_blank" href="http://reddit.com{{this.url}}">{{this.title}}</a>
+						</li>
+					{{/each}}
+				</ul>
+			{{/each}}
+			</div>
+
+			{{> graph}}
 		</div>
-
-		{{> graph}}
-
+		{{scroll}}
 	{{/if}}
 </template>
 
