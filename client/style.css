@@ -26,3 +26,9 @@ select{
 select:focus{
 	cursor:auto;
 }
+
+@media (min-width: 800px) {
+  .container {
+    max-width: 40%;
+  }
+}
