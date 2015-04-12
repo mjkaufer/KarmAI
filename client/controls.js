@@ -21,39 +21,44 @@ Template.controls.helpers({
 Template.controls.events({
     'click #ai': function() {
         //run diagnostics
-
-        var subreddit = $('#subreddit').val() || "askReddit";
-        $('#subreddit').val(subreddit); //if the user didn't set a value, fills the input with the default val
-        var time = $('#time').val();
-        var amount = parseInt($('#amount').val()) / 100;
-
-        Session.set("count", parseInt($('#amount').val()));
-        Session.set("best", null);
-        Session.set("subreddit", subreddit);
-
-        getPosts(subreddit, amount, time, [], function(posts) {
-            // console.log("Posts");
-            // console.log(posts)
-            parseData(posts)
-
-            // console.log("All done!")
-            // console.log(TempStats.find({}, {
-            //     sort: {
-            //         freq: -1
-            //     }
-            // }).fetch());
-
-            Session.set("best", {
-                subreddit: subreddit,
-                times: TempStats.find({}, {
-                    sort: {
-                        freq: -1
-                    }
-                }).fetch().slice(0, top)
-            })
-
-        });
-
-
+        info();
+    },
+    'keyup #subreddit': function(e) {
+        if (e.which == 13)
+            info();
     }
 });
+
+function info() {
+    var subreddit = $('#subreddit').val() || "askReddit";
+    $('#subreddit').val(subreddit); //if the user didn't set a value, fills the input with the default val
+    var time = $('#time').val();
+    var amount = parseInt($('#amount').val()) / 100;
+
+    Session.set("count", parseInt($('#amount').val()));
+    Session.set("best", null);
+    Session.set("subreddit", subreddit);
+
+    getPosts(subreddit, amount, time, [], function(posts) {
+        // console.log("Posts");
+        // console.log(posts)
+        parseData(posts)
+
+        // console.log("All done!")
+        // console.log(TempStats.find({}, {
+        //     sort: {
+        //         freq: -1
+        //     }
+        // }).fetch());
+
+        Session.set("best", {
+            subreddit: subreddit,
+            times: TempStats.find({}, {
+                sort: {
+                    freq: -1
+                }
+            }).fetch().slice(0, top)
+        })
+
+    });
+}
